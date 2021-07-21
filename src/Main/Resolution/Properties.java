@@ -22,4 +22,9 @@ public class Properties {
                 ", width = " + width +
                 ", height = " + height + "}";
     }
+
+    public String getTitle() {
+        return "\n\n\n\n\n" + width + "x" + height;
+    }
+
 }

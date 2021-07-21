@@ -20,7 +20,7 @@ public class Main extends Application {
                 .getClassLoader().getResource("Main/MainUI/main.fxml")));
 
         window.initStyle(StageStyle.UNDECORATED);
-        window.setScene(new Scene(startWindow, 680, 380));
+        window.setScene(new Scene(startWindow, 655, 350));
         window.show();
     }
 

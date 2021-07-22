@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 
 public class Functions {
 
-    public static String CreateLogo(String width, String height) throws IOException {
+    public static String CreateLogo(int width, int height) throws IOException {
         BufferedImage image = new BufferedImage(64, 64, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2d = image.createGraphics();
 
@@ -23,9 +23,9 @@ public class Functions {
 
         g2d.setFont(new Font("TimesRoman", Font.PLAIN, 15));
         g2d.setColor(Color.white);
-        g2d.drawString(width, 16, 20);
+        g2d.drawString(String.valueOf(width), 16, 20);
         g2d.drawString("X", 27, 37);
-        g2d.drawString(height, 16, 54);
+        g2d.drawString(String.valueOf(height), 16, 54);
         g2d.dispose();
 
         String name = "resolutions/" + width + "x" + height + ".png";
@@ -62,7 +62,7 @@ public class Functions {
         thisWindow.setIconified(true);
     }
 
-    public static void close(AnchorPane window) throws IOException {
+    public static void close(AnchorPane window) {
         Stage thisWindow = (Stage) window.getScene().getWindow();
         thisWindow.close();
     }

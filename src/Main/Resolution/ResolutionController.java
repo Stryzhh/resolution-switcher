@@ -1,18 +1,13 @@
 package Main.Resolution;
 
 import Main.Functions;
+import Main.Properties;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Reader;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +16,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 
 public class ResolutionController implements Initializable {
 
@@ -50,21 +44,21 @@ public class ResolutionController implements Initializable {
     }
 
     public void addResolution() throws IOException {
-        String widthValue = "";
-        String heightValue = "";
+        int widthValue = 0;
+        int heightValue = 0;
         String imageLocation;
 
         boolean getImage = false;
         if (list.getSelectionModel().getSelectedItem() != null) {
             String item = list.getSelectionModel().getSelectedItem();
             String[] parts = item.split("x");
-            widthValue = parts[0];
-            heightValue = parts[1];
+            widthValue = Integer.parseInt(parts[0]);
+            heightValue = Integer.parseInt(parts[1]);
             getImage = true;
         } else if (width.getSelectionModel().getSelectedItem() != null
                 && height.getSelectionModel().getSelectedItem() != null) {
-            widthValue = width.getSelectionModel().getSelectedItem();
-            heightValue = height.getSelectionModel().getSelectedItem();
+            widthValue =  Integer.parseInt(width.getSelectionModel().getSelectedItem());
+            heightValue =  Integer.parseInt(height.getSelectionModel().getSelectedItem());
             getImage = true;
         }
 

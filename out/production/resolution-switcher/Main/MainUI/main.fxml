@@ -39,7 +39,7 @@
       <AnchorPane layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="655.0" style="-fx-background-color: #363434; -fx-border-color: black;">
          <children>
             <Label layoutX="14.0" layoutY="16.0" text="Status: Ready" textFill="WHITE" />
-            <JFXButton layoutX="601.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="43.0" style="-fx-background-color: #545252; -fx-border-color: black;" text="Button" textFill="WHITE">
+            <JFXButton layoutX="601.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#openHelp" prefHeight="35.0" prefWidth="43.0" style="-fx-background-color: #545252; -fx-border-color: black;" text="Button" textFill="WHITE">
                <graphic>
                   <ImageView fx:id="help" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" x="5.0">
                      <image>
@@ -48,7 +48,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="548.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="43.0" style="-fx-background-color: #545252; -fx-border-color: black;" text="Button" textFill="WHITE">
+            <JFXButton layoutX="548.0" layoutY="6.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#openSettings" prefHeight="35.0" prefWidth="43.0" style="-fx-background-color: #545252; -fx-border-color: black;" text="Button" textFill="WHITE">
                <graphic>
                   <ImageView fx:id="settings" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" x="5.0">
                      <image>

@@ -2,7 +2,9 @@ package Main;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +15,18 @@ import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
 
 public class Functions {
+
+    public static String createBatch(int width, int height) throws IOException {
+        String name = "resolutions/" + width + "x" + height + ".bat";
+        File file = new File(name);
+
+        FileOutputStream output = new FileOutputStream(file);
+        DataOutputStream input = new DataOutputStream(output);
+        input.writeBytes("javac resolutions/Main.java " + width + " " + height + "\n");
+        input.writeBytes("java resolutions/Main\n");
+
+        return name;
+    }
 
     public static String CreateLogo(int width, int height) throws IOException {
         BufferedImage image = new BufferedImage(64, 64, BufferedImage.TYPE_INT_RGB);

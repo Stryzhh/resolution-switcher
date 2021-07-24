@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -90,23 +93,29 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="OverrideImplement.combined" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../Program Files/Java/jdk-11.0.8/bin/javac.exe" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
+    <property name="settings.editor.selected.configurable" value="jformdesigner.nativelibrarypaths" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gmaun\Documents\JavaProjects\Projects\resolution-switcher\src\Main" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gmaun\Documents\JavaProjects\Projects\resolution-switcher\src\Main\C" />
+      <recent name="C:\Users\gmaun\Documents\JavaProjects\Projects\resolution-switcher\src\Main\HeaderFiles" />
       <recent name="C:\Users\gmaun\Documents\JavaProjects\Projects\resolution-switcher\src\Main\Help" />
       <recent name="C:\Users\gmaun\Documents\JavaProjects\Projects\resolution-switcher\src\Main\Settings" />
       <recent name="C:\Users\gmaun\Documents\JavaProjects\Projects\resolution-switcher\src\Main\Resolution" />
-      <recent name="C:\Users\gmaun\Documents\JavaProjects\Projects\resolution-switcher\src\Main\MainUI" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.C">
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -132,18 +141,30 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application">
+    <configuration name="C" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main.C.C" />
+      <module name="resolution-switcher" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\gmaun\Documents\JavaProjects\jdks\javafx-sdk-16\lib&quot;" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Main.C.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main.Main" />
       <module name="resolution-switcher" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\gmaun\Documents\JavaProjects\jdks\javafx-sdk-16\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Main.MainUI.*" />
+          <option name="PATTERN" value="Main.C.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -185,6 +206,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.C" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.C" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -218,43 +249,84 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1626742863640">
+    <state x="414" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1627094446630">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="414" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626742863640" />
+    <state x="414" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1627094446630" />
+    <state x="458" y="160" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1627094123051">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="458" y="160" key="#com.intellij.ide.macro.MacrosDialog/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1627094123051" />
     <state x="765" y="231" key="#com.intellij.ide.util.MemberChooser" timestamp="1626887207035">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="765" y="231" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626887207035" />
-    <state x="519" y="266" key="FileChooserDialogImpl" timestamp="1626746937022">
+    <state x="690" y="272" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1626975014803">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="690" y="272" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626975014803" />
+    <state x="447" y="284" width="463" height="342" key="#com.intellij.tools.ToolEditorDialog" timestamp="1626993585027">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="447" y="284" width="463" height="342" key="#com.intellij.tools.ToolEditorDialog/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626993585027" />
+    <state x="827" y="275" width="751" height="499" key="EnvironmentVariablesDialog" timestamp="1627094119080">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="827" y="275" width="751" height="499" key="EnvironmentVariablesDialog/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1627094119080" />
+    <state x="519" y="266" key="FileChooserDialogImpl" timestamp="1626993507229">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="346" y="266" key="FileChooserDialogImpl/0.0.1280.1050/1280.0.1920.1050/-1920.0.1920.1050@0.0.1280.1050" timestamp="1626740525725" />
-    <state x="519" y="266" key="FileChooserDialogImpl/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626746937022" />
-    <state width="1877" height="276" key="GridCell.Tab.0.bottom" timestamp="1626924684222">
+    <state x="519" y="266" key="FileChooserDialogImpl/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626993507229" />
+    <state width="1921" height="222" key="GridCell.Tab.0.bottom" timestamp="1627096425540">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1237" height="276" key="GridCell.Tab.0.bottom/0.0.1280.1050/1280.0.1920.1050/-1920.0.1920.1050@0.0.1280.1050" timestamp="1626802599717" />
-    <state width="1877" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626924684222" />
-    <state width="1877" height="276" key="GridCell.Tab.0.center" timestamp="1626924684222">
+    <state width="1921" height="222" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1627096425540" />
+    <state width="1921" height="222" key="GridCell.Tab.0.center" timestamp="1627096425540">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1237" height="276" key="GridCell.Tab.0.center/0.0.1280.1050/1280.0.1920.1050/-1920.0.1920.1050@0.0.1280.1050" timestamp="1626802599717" />
-    <state width="1877" height="276" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626924684222" />
-    <state width="1877" height="276" key="GridCell.Tab.0.left" timestamp="1626924684222">
+    <state width="1921" height="222" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1627096425540" />
+    <state width="1921" height="222" key="GridCell.Tab.0.left" timestamp="1627096425540">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1237" height="276" key="GridCell.Tab.0.left/0.0.1280.1050/1280.0.1920.1050/-1920.0.1920.1050@0.0.1280.1050" timestamp="1626802599717" />
-    <state width="1877" height="276" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626924684222" />
-    <state width="1877" height="276" key="GridCell.Tab.0.right" timestamp="1626924684222">
+    <state width="1921" height="222" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1627096425540" />
+    <state width="1921" height="222" key="GridCell.Tab.0.right" timestamp="1627096425540">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1237" height="276" key="GridCell.Tab.0.right/0.0.1280.1050/1280.0.1920.1050/-1920.0.1920.1050@0.0.1280.1050" timestamp="1626802599717" />
-    <state width="1877" height="276" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626924684222" />
-    <state x="180" y="99" key="SettingsEditor" timestamp="1626746939459">
+    <state width="1921" height="222" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1627096425540" />
+    <state width="1921" height="360" key="GridCell.Tab.1.bottom" timestamp="1626979222649">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1921" height="360" key="GridCell.Tab.1.bottom/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626979222649" />
+    <state width="1921" height="360" key="GridCell.Tab.1.center" timestamp="1626979222648">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1921" height="360" key="GridCell.Tab.1.center/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626979222648" />
+    <state width="1921" height="360" key="GridCell.Tab.1.left" timestamp="1626979222648">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1921" height="360" key="GridCell.Tab.1.left/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626979222648" />
+    <state width="1921" height="360" key="GridCell.Tab.1.right" timestamp="1626979222649">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1921" height="360" key="GridCell.Tab.1.right/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626979222649" />
+    <state x="180" y="99" key="SettingsEditor" timestamp="1627096353326">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="120" y="99" key="SettingsEditor/0.0.1280.1050/1280.0.1920.1050/-1920.0.1920.1050@0.0.1280.1050" timestamp="1626740529300" />
-    <state x="180" y="99" key="SettingsEditor/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1626746939459" />
+    <state x="180" y="99" key="SettingsEditor/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1627096353326" />
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup" timestamp="1627093395132">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="623" y="227" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050/1920.0.1920.1050/-1920.0.1920.1050@0.0.1920.1050" timestamp="1627093395132" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/resolution_switcher$Main.ic" NAME="Main Coverage Results" MODIFIED="1626977311777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Main.MainUI.*</FILTER>
+    </SUITE>
   </component>
 </project>

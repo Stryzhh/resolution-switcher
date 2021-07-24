@@ -63,8 +63,9 @@ public class ResolutionController implements Initializable {
         }
 
         if (getImage) {
+            String batchLocation = Functions.createBatch(widthValue, heightValue);
             imageLocation = Functions.CreateLogo(widthValue, heightValue);
-            Properties properties = new Properties(imageLocation, widthValue, heightValue);
+            Properties properties = new Properties(imageLocation, widthValue, heightValue, batchLocation);
 
             FileWriter writer = new FileWriter("resolutions/" + widthValue + "x" + heightValue + ".json");
             Gson g = new GsonBuilder().setPrettyPrinting().create();
@@ -74,6 +75,14 @@ public class ResolutionController implements Initializable {
     }
 
     private void loadList() {
+        /*
+        ArrayList<String> stringList = C.resolutionList();
+        for (String string : stringList) {
+            list.getItems().add(string);
+        }
+
+         */
+
         //list items
         list.getItems().add("7680x4320");
         list.getItems().add("3840x2160");

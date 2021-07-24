@@ -1,5 +1,6 @@
 {
   "image": "resolutions/1760x1080.png",
-  "width": "1760",
-  "height": "1080"
+  "width": 1760,
+  "height": 1080,
+  "batch": "resolutions/1760x1080.bat"
 }

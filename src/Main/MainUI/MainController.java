@@ -1,5 +1,6 @@
 package Main.MainUI;
 
+import Main.C.C;
 import Main.Functions;
 import Main.Properties;
 import com.google.gson.Gson;
@@ -12,6 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ContextMenu;
@@ -20,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
+import net.jimmc.jshortcut.JShellLink;
 
 public class MainController implements Initializable {
 
@@ -48,7 +51,6 @@ public class MainController implements Initializable {
     private JFXButton resolution4;
     @FXML
     private JFXButton resolution5;
-
     @FXML
     private ImageView resImage0;
     @FXML
@@ -66,6 +68,123 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        disableButtons();
+        loadResolutions();
+
+        //click actions
+        mouseClick(resolution0);
+        mouseClick(resolution1);
+        mouseClick(resolution2);
+        mouseClick(resolution3);
+        mouseClick(resolution4);
+        mouseClick(resolution5);
+
+        logo.setImage(new Image(new File("images/logo.png").toURI().toString()));
+        settings.setImage(new Image(new File("images/settings.png").toURI().toString()));
+        help.setImage(new Image(new File("images/help.png").toURI().toString()));
+        minimize.setImage(new Image(new File("images/minimize.png").toURI().toString()));
+        close.setImage(new Image(new File("images/close.png").toURI().toString()));
+    }
+
+
+    private void mouseClick(JFXButton button) {
+        button.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+                changeResolution(button);
+            } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+                final ContextMenu contextMenu = new ContextMenu();
+                final AnchorPane pane = new AnchorPane();
+
+                MenuItem change = new MenuItem("Change Resolution");
+                MenuItem desktopShortcut = new MenuItem("Create Desktop Shortcut");
+                MenuItem startupShortcut = new MenuItem("Create Startup Shortcut");
+                MenuItem delete = new MenuItem("Delete Resolution");
+
+                contextMenu.getItems().addAll(change, desktopShortcut, startupShortcut, delete);
+                button.setContextMenu(contextMenu);
+                contextMenu.show(pane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
+
+                change.setOnAction(actionEvent -> changeResolution(button));
+                desktopShortcut.setOnAction(actionEvent -> createDesktopShortcut(button));
+                delete.setOnAction(actionEvent -> deleteResolution(button));
+                startupShortcut.setOnAction(actionEvent -> createStartupShortcut(button));
+            }
+        });
+    }
+
+    private Properties getResolution(JFXButton button) {
+        Properties properties = null;
+
+        if (resolution0.equals(button)) {
+            properties = resolutionProperties[0];
+        } else if (resolution1.equals(button)) {
+            properties = resolutionProperties[1];
+        } else if (resolution2.equals(button)) {
+            properties = resolutionProperties[2];
+        } else if (resolution3.equals(button)) {
+            properties = resolutionProperties[3];
+        } else if (resolution4.equals(button)) {
+            properties = resolutionProperties[4];
+        } else if (resolution5.equals(button)) {
+            properties = resolutionProperties[5];
+        }
+
+        return properties;
+    }
+
+    private void changeResolution(JFXButton button) {
+        Properties properties = getResolution(button);
+
+        assert properties != null;
+        int width = properties.getWidth();
+        int height = properties.getHeight();
+
+        if (C.change(1024, 768) == 1) {
+            System.out.println("Successful");
+        } else {
+            System.out.println("Not Successful");
+        }
+    }
+
+    private void createDesktopShortcut(JFXButton button) {
+        Properties properties = getResolution(button);
+
+        JShellLink link = new JShellLink();
+        String filePath = JShellLink.getDirectory("") + properties.getBatchFile();
+        link.setFolder(JShellLink.getDirectory("desktop"));
+        link.setName(properties.getFileName());
+        link.setPath(filePath);
+        link.save();
+    }
+
+    private void createStartupShortcut(JFXButton button) {
+        Properties properties = getResolution(button);
+        File file = new File(System.getProperty("user.home") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/");
+
+        JShellLink link = new JShellLink();
+        String filePath = JShellLink.getDirectory("") + properties.getBatchFile();
+        link.setFolder(file.getAbsolutePath());
+        link.setName(properties.getFileName());
+        link.setPath(filePath);
+        link.save();
+    }
+
+    private void deleteResolution(JFXButton button) {
+        Properties properties = getResolution(button);
+
+        File f = new File("resolutions/");
+        File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(properties.getFileName()) && name.endsWith(".json"));
+        assert matchingFiles != null;
+        ArrayList<File> files = new ArrayList<>(Arrays.asList(matchingFiles));
+        files.removeIf(File::delete);
+
+        if (files.size() == 0) {
+            Platform.runLater(this::loadResolutions);
+        }
+    }
+
+    private void loadResolutions() {
+        disableButtons();
         Gson gson = new Gson();
 
         File[] filesArray = new File("resolutions").listFiles();
@@ -73,8 +192,8 @@ public class MainController implements Initializable {
         ArrayList<File> files = new ArrayList<>(Arrays.asList(filesArray));
         files.removeIf(file -> !file.toString().contains(".json"));
 
-        if (files.size() > 5) {
-            files.subList(5, files.size()).clear();
+        if (files.size() > 6) {
+            files.subList(6, files.size()).clear();
         }
 
         int count = 0;
@@ -105,90 +224,34 @@ public class MainController implements Initializable {
                         loadResolution(resolution5, resImage5, properties, image);
                         break;
                 }
+                
                 count++;
-
+                reader.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-        //click actions
-        mouseClick(resolution0, resImage0);
-        mouseClick(resolution1, resImage1);
-        mouseClick(resolution2, resImage2);
-        mouseClick(resolution3, resImage3);
-        mouseClick(resolution4, resImage4);
-        mouseClick(resolution5, resImage5);
-
-        logo.setImage(new Image(new File("images/logo.png").toURI().toString()));
-        settings.setImage(new Image(new File("images/settings.png").toURI().toString()));
-        help.setImage(new Image(new File("images/help.png").toURI().toString()));
-        minimize.setImage(new Image(new File("images/minimize.png").toURI().toString()));
-        close.setImage(new Image(new File("images/close.png").toURI().toString()));
     }
 
-    private void mouseClick(JFXButton button, ImageView image) {
-        button.setOnMouseClicked(mouseEvent -> {
-            if (mouseEvent.getButton() == MouseButton.PRIMARY) {
-                changeResolution(button);
-            } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-                final ContextMenu contextMenu = new ContextMenu();
-                final AnchorPane pane = new AnchorPane();
-
-                MenuItem change = new MenuItem("Change Resolution");
-                MenuItem desktopShortcut = new MenuItem("Create Desktop Shortcut");
-                MenuItem startupShortcut = new MenuItem("Create Startup Shortcut");
-                MenuItem delete = new MenuItem("Delete Resolution");
-
-                contextMenu.getItems().addAll(change, desktopShortcut, startupShortcut, delete);
-                button.setContextMenu(contextMenu);
-                contextMenu.show(pane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
-
-                change.setOnAction(actionEvent -> changeResolution(button));
-                desktopShortcut.setOnAction(actionEvent -> createDesktopShortcut());
-                startupShortcut.setOnAction(actionEvent -> createStartupShortcut());
-                delete.setOnAction(actionEvent -> deleteResolution(button, image));
-            }
-        });
-    }
-
-    private void changeResolution(JFXButton button) {
-        Properties properties = getResolution(button);
-
-        assert properties != null;
-        int width = properties.getWidth();
-        int height = properties.getHeight();
-    }
-
-    private void createDesktopShortcut() {
-    }
-
-    private void createStartupShortcut() {
-    }
-
-    private void deleteResolution(JFXButton button, ImageView image) {
-        button.setText("");
-        image.setImage(null);
-
-
-    }
-
-    private Properties getResolution(JFXButton button) {
-        Properties properties = null;
-        if (resolution0.equals(button)) {
-            properties = resolutionProperties[0];
-        } else if (resolution1.equals(button)) {
-            properties = resolutionProperties[1];
-        } else if (resolution2.equals(button)) {
-            properties = resolutionProperties[2];
-        } else if (resolution3.equals(button)) {
-            properties = resolutionProperties[3];
-        } else if (resolution4.equals(button)) {
-            properties = resolutionProperties[4];
-        } else if (resolution5.equals(button)) {
-            properties = resolutionProperties[5];
-        }
-        return properties;
+    private void disableButtons() {
+        resolution0.setVisible(false);
+        resolution0.setDisable(true);
+        resImage0.setImage(null);
+        resolution1.setVisible(false);
+        resolution1.setDisable(true);
+        resImage1.setImage(null);
+        resolution2.setVisible(false);
+        resolution2.setDisable(true);
+        resImage2.setImage(null);
+        resolution3.setVisible(false);
+        resolution3.setDisable(true);
+        resImage3.setImage(null);
+        resolution4.setVisible(false);
+        resolution4.setDisable(true);
+        resImage4.setImage(null);
+        resolution5.setVisible(false);
+        resolution5.setDisable(true);
+        resImage5.setImage(null);
     }
 
     private void loadResolution(JFXButton button, ImageView image, Properties properties, Image newImage) {

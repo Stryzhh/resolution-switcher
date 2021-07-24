@@ -1,6 +1,5 @@
 package Main;
 
-import java.util.Objects;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,8 +15,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage window) throws Exception{
-        Parent startWindow = FXMLLoader.load(Objects.requireNonNull(getClass()
-                .getClassLoader().getResource("Main/MainUI/main.fxml")));
+        Parent startWindow = FXMLLoader.load(Main.class.getResource("MainUI/main.fxml"));
 
         window.initStyle(StageStyle.UNDECORATED);
         window.setScene(new Scene(startWindow, 655, 350));

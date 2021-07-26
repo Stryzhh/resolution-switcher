@@ -4,16 +4,16 @@ import java.io.File;
 
 public class C {
 
-    public static native Long change(int width, int height);
+    public static native long change(int width, int height);
 
-    private static final String absolute = new File("resolution/C/change.dll").getAbsolutePath();
+    private static final String absolute = new File("src/Main/C/resolution.dll").getAbsolutePath();
 
     static {
         System.load(absolute);
     }
 
     public static void main(String[] args) {
-        C.change(1024, 768);
+        C.change(1920, 1080);
     }
 
 }

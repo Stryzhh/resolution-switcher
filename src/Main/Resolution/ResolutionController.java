@@ -2,6 +2,7 @@ package Main.Resolution;
 
 import Main.Functions;
 import Main.Properties;
+import Main.Settings;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.File;
@@ -16,6 +17,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import net.jimmc.jshortcut.JShellLink;
 
 public class ResolutionController implements Initializable {
 
@@ -71,18 +73,29 @@ public class ResolutionController implements Initializable {
             Gson g = new GsonBuilder().setPrettyPrinting().create();
             writer.write(g.toJson(properties));
             writer.close();
+
+            if (Settings.currentDesktop) {
+                JShellLink link = new JShellLink();
+                String filePath = JShellLink.getDirectory("") + properties.getBatchFile();
+                link.setFolder(JShellLink.getDirectory("desktop"));
+                link.setName(properties.getFileName());
+                link.setPath(filePath);
+                link.save();
+            }
+            if (Settings.currentStartMenu) {
+                File file = new File(System.getProperty("user.home") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/");
+
+                JShellLink link = new JShellLink();
+                String filePath = JShellLink.getDirectory("") + properties.getBatchFile();
+                link.setFolder(file.getAbsolutePath());
+                link.setName(properties.getFileName());
+                link.setPath(filePath);
+                link.save();
+            }
         }
     }
 
     private void loadList() {
-        /*
-        ArrayList<String> stringList = C.resolutionList();
-        for (String string : stringList) {
-            list.getItems().add(string);
-        }
-
-         */
-
         //list items
         list.getItems().add("7680x4320");
         list.getItems().add("3840x2160");
@@ -145,9 +158,9 @@ public class ResolutionController implements Initializable {
         Functions.minimize(window);
     }
 
-    public void close() throws IOException {
+    public void close() {
+        Functions.loadResolutions();
         Functions.close(window);
     }
-
 
 }

@@ -4,8 +4,8 @@
 
 long change(int width, int height) {
     DEVMODE devmode;
-    devmode.dmPelsWidth = width;
-    devmode.dmPelsHeight = height;
+    devmode.dmPelsWidth = 1024;
+    devmode.dmPelsHeight = 768;
     devmode.dmFields = DM_PELSWIDTH | DM_PELSHEIGHT;
     devmode.dmSize = sizeof(DEVMODE);
 

@@ -10,9 +10,9 @@ extern "C" {
 /*
  * Class:     Main_C_C
  * Method:    change
- * Signature: (II)Ljava/lang/Long;
+ * Signature: (II)J
  */
-JNIEXPORT jobject JNICALL Java_Main_C_C_change
+JNIEXPORT jlong JNICALL Java_Main_C_C_change
   (JNIEnv *, jclass, jint, jint);
 
 #ifdef __cplusplus

@@ -3,12 +3,9 @@ package Main.MainUI;
 import Main.C.C;
 import Main.Functions;
 import Main.Properties;
-import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,8 +65,9 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        disableButtons();
-        loadResolutions();
+        setVariables();
+        Functions.disableButtons();
+        Functions.loadResolutions();
 
         //click actions
         mouseClick(resolution0);
@@ -86,6 +84,21 @@ public class MainController implements Initializable {
         close.setImage(new Image(new File("images/close.png").toURI().toString()));
     }
 
+    private void setVariables() {
+        Functions.resolutionProperties = resolutionProperties;
+        Functions.resolution0 = resolution0;
+        Functions.resolution1 = resolution1;
+        Functions.resolution2 = resolution2;
+        Functions.resolution3 = resolution3;
+        Functions.resolution4 = resolution4;
+        Functions.resolution5 = resolution5;
+        Functions.resImage0 = resImage0;
+        Functions.resImage1 = resImage1;
+        Functions.resImage2 = resImage2;
+        Functions.resImage3 = resImage3;
+        Functions.resImage4 = resImage4;
+        Functions.resImage5 = resImage5;
+    }
 
     private void mouseClick(JFXButton button) {
         button.setOnMouseClicked(mouseEvent -> {
@@ -173,92 +186,32 @@ public class MainController implements Initializable {
         Properties properties = getResolution(button);
 
         File f = new File("resolutions/");
-        File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(properties.getFileName()) && name.endsWith(".json"));
+        File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(properties.getFileName()));
         assert matchingFiles != null;
         ArrayList<File> files = new ArrayList<>(Arrays.asList(matchingFiles));
         files.removeIf(File::delete);
+        deleteDesktopShortcut(properties.getFileName());
+        deleteStartMenuShortcut(properties.getFileName());
 
         if (files.size() == 0) {
-            Platform.runLater(this::loadResolutions);
+            Platform.runLater(Functions::loadResolutions);
         }
     }
 
-    private void loadResolutions() {
-        disableButtons();
-        Gson gson = new Gson();
-
-        File[] filesArray = new File("resolutions").listFiles();
-        assert filesArray != null;
-        ArrayList<File> files = new ArrayList<>(Arrays.asList(filesArray));
-        files.removeIf(file -> !file.toString().contains(".json"));
-
-        if (files.size() > 6) {
-            files.subList(6, files.size()).clear();
-        }
-
-        int count = 0;
-        for (File file : files) {
-            try {
-                Reader reader = new FileReader(file);
-                Properties properties = gson.fromJson(reader, Properties.class);
-                resolutionProperties[count] = properties;
-                Image image = new Image(new File(properties.getImage()).toURI().toString());
-
-                switch (count) {
-                    case 0:
-                        loadResolution(resolution0, resImage0, properties, image);
-                        break;
-                    case 1:
-                        loadResolution(resolution1, resImage1, properties, image);
-                        break;
-                    case 2:
-                        loadResolution(resolution2, resImage2, properties, image);
-                        break;
-                    case 3:
-                        loadResolution(resolution3, resImage3, properties, image);
-                        break;
-                    case 4:
-                        loadResolution(resolution4, resImage4, properties, image);
-                        break;
-                    case 5:
-                        loadResolution(resolution5, resImage5, properties, image);
-                        break;
-                }
-                
-                count++;
-                reader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    private void deleteDesktopShortcut(String fileName) {
+        File f = new File(JShellLink.getDirectory("desktop"));
+        File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(fileName));
+        assert matchingFiles != null;
+        ArrayList<File> files = new ArrayList<>(Arrays.asList(matchingFiles));
+        files.removeIf(File::delete);
     }
 
-    private void disableButtons() {
-        resolution0.setVisible(false);
-        resolution0.setDisable(true);
-        resImage0.setImage(null);
-        resolution1.setVisible(false);
-        resolution1.setDisable(true);
-        resImage1.setImage(null);
-        resolution2.setVisible(false);
-        resolution2.setDisable(true);
-        resImage2.setImage(null);
-        resolution3.setVisible(false);
-        resolution3.setDisable(true);
-        resImage3.setImage(null);
-        resolution4.setVisible(false);
-        resolution4.setDisable(true);
-        resImage4.setImage(null);
-        resolution5.setVisible(false);
-        resolution5.setDisable(true);
-        resImage5.setImage(null);
-    }
-
-    private void loadResolution(JFXButton button, ImageView image, Properties properties, Image newImage) {
-        button.setVisible(true);
-        button.setDisable(false);
-        button.setText(properties.getTitle());
-        image.setImage(newImage);
+    private void deleteStartMenuShortcut(String fileName) {
+        File f = new File(System.getProperty("user.home") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/");
+        File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(fileName));
+        assert matchingFiles != null;
+        ArrayList<File> files = new ArrayList<>(Arrays.asList(matchingFiles));
+        files.removeIf(File::delete);
     }
 
     public void openResolution() throws IOException {
@@ -270,7 +223,7 @@ public class MainController implements Initializable {
     }
 
     public void openSettings() throws IOException {
-        Functions.openWindow("Main/Settings/settings.fxml", "Settings");
+        Functions.openWindow("Main/SettingsUI/settings.fxml", "Settings");
     }
 
     public void drag() {

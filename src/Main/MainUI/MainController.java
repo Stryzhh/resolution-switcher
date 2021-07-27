@@ -14,6 +14,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -60,6 +61,8 @@ public class MainController implements Initializable {
     private ImageView resImage4;
     @FXML
     private ImageView resImage5;
+    @FXML
+    private Label status;
 
     private final Properties[] resolutionProperties = new Properties[6];
 
@@ -152,10 +155,10 @@ public class MainController implements Initializable {
         int width = properties.getWidth();
         int height = properties.getHeight();
 
-        if (C.change(1024, 768) == 1) {
-            System.out.println("Successful");
+        if (C.change(width, height) == 0) {
+            status.setText("Status: Resolution changed");
         } else {
-            System.out.println("Not Successful");
+            status.setText("Status: Resolution not supported!");
         }
     }
 
@@ -215,7 +218,12 @@ public class MainController implements Initializable {
     }
 
     public void openResolution() throws IOException {
-        Functions.openWindow("Main/Resolution/resolution.fxml", "Resolutions");
+        System.out.println(resolutionProperties[5]);
+        if (resolutionProperties[5] == null) {
+            Functions.openWindow("Main/Resolution/resolution.fxml", "Resolutions");
+        } else {
+            status.setText("Status: Reached maximum resolutions!");
+        }
     }
 
     public void openHelp() throws IOException {

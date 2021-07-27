@@ -8,13 +8,19 @@ public class Properties {
     private final int width;
     private final int height;
     private final String batch;
+    private final String icon;
 
-    public Properties(String image, int width, int height, String batch) {
+    public Properties(String image, int width, int height, String batch, String icon) {
         super();
         this.image = image;
         this.width = width;
         this.height = height;
         this.batch = batch;
+        this.icon = icon;
+    }
+
+    public String getIcon() {
+        return icon;
     }
 
     public String getBatch() {
@@ -47,6 +53,10 @@ public class Properties {
 
     public String getBatchFile() {
         return new File("resolutions\\" + width + "x" + height + ".bat").getAbsolutePath();
+    }
+
+    public String getIconFile() {
+        return new File("resolutions\\" + width + "x" + height + ".ico").getAbsolutePath();
     }
 
 }

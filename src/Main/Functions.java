@@ -21,6 +21,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import net.sf.image4j.codec.ico.ICOEncoder;
 
 public class Functions {
 
@@ -40,15 +42,30 @@ public class Functions {
 
     public static String createBatch(int width, int height) throws IOException {
         String name = "resolutions/" + width + "x" + height + ".bat";
-        File file = new File(name);
+        File file = new File("resolutions/" + width + "x" + height + ".bat");
+        File folder = new File("src/Main/C");
 
         FileOutputStream output = new FileOutputStream(file);
         DataOutputStream input = new DataOutputStream(output);
-        input.writeBytes("javac resolutions/Main.java " + width + " " + height + "\n");
-        input.writeBytes("java resolutions/Main\n");
+        input.writeBytes("cd " + folder.getAbsolutePath() + "\n");
+        input.writeBytes("javac C.java\n");
+        input.writeBytes("java C.java " + width + " " + height);
         input.close();
         output.close();
 
+        return name;
+    }
+
+    public static String createIcon(String imageLocation, int width, int height) throws IOException {
+        String name = "resolutions/" + width + "x" + height + ".ico";
+        java.awt.Image image = new ImageIcon(imageLocation).getImage();
+        BufferedImage bi = new BufferedImage(64, 64, 2);
+
+        Graphics2D g2d = bi.createGraphics();
+        g2d.drawImage(image, 0, 0, null);
+        g2d.dispose();
+
+        ICOEncoder.write(bi, new File(name));
         return name;
     }
 
@@ -56,14 +73,14 @@ public class Functions {
         BufferedImage image = new BufferedImage(64, 64, BufferedImage.TYPE_INT_RGB);
         Graphics2D g2d = image.createGraphics();
 
+        //create 64x64 text logo
         g2d.setColor(Color.black);
         g2d.fillRect(0, 0, 64, 64);
-
-        g2d.setFont(new Font("TimesRoman", Font.PLAIN, 15));
+        g2d.setFont(new Font("Arial", Font.PLAIN, 16));
         g2d.setColor(Color.white);
-        g2d.drawString(String.valueOf(width), 16, 20);
+        g2d.drawString(String.valueOf(width), 12, 20);
         g2d.drawString("X", 27, 37);
-        g2d.drawString(String.valueOf(height), 16, 54);
+        g2d.drawString(String.valueOf(height), 12, 54);
         g2d.dispose();
 
         String name = "resolutions/" + width + "x" + height + ".png";
@@ -75,6 +92,7 @@ public class Functions {
 
     public static void loadResolutions() {
         disableButtons();
+        Arrays.fill(resolutionProperties, null);
         Gson gson = new Gson();
 
         File[] filesArray = new File("resolutions").listFiles();

@@ -6,14 +6,16 @@ public class C {
 
     public static native long change(int width, int height);
 
-    private static final String absolute = new File("src/Main/C/resolution.dll").getAbsolutePath();
+    private static final String changeAbsolute = new File("src/Main/C/change.dll").getAbsolutePath();
 
     static {
-        System.load(absolute);
+        System.load(changeAbsolute);
     }
 
     public static void main(String[] args) {
-        C.change(1920, 1080);
+        if (args.length == 2) {
+            change(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+        }
     }
 
 }

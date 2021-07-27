@@ -17,7 +17,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javax.imageio.ImageIO;
 import net.jimmc.jshortcut.JShellLink;
+import net.sf.image4j.codec.ico.ICOEncoder;
 
 public class ResolutionController implements Initializable {
 
@@ -67,7 +69,8 @@ public class ResolutionController implements Initializable {
         if (getImage) {
             String batchLocation = Functions.createBatch(widthValue, heightValue);
             imageLocation = Functions.CreateLogo(widthValue, heightValue);
-            Properties properties = new Properties(imageLocation, widthValue, heightValue, batchLocation);
+            String iconLocation = Functions.createIcon(imageLocation, widthValue, heightValue);
+            Properties properties = new Properties(imageLocation, widthValue, heightValue, batchLocation, iconLocation);
 
             FileWriter writer = new FileWriter("resolutions/" + widthValue + "x" + heightValue + ".json");
             Gson g = new GsonBuilder().setPrettyPrinting().create();
@@ -77,9 +80,12 @@ public class ResolutionController implements Initializable {
             if (Settings.currentDesktop) {
                 JShellLink link = new JShellLink();
                 String filePath = JShellLink.getDirectory("") + properties.getBatchFile();
+                String iconPath = JShellLink.getDirectory("") + properties.getIconFile();
+
                 link.setFolder(JShellLink.getDirectory("desktop"));
                 link.setName(properties.getFileName());
                 link.setPath(filePath);
+                link.setIconLocation(iconPath);
                 link.save();
             }
             if (Settings.currentStartMenu) {

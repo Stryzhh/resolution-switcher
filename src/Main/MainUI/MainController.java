@@ -218,7 +218,6 @@ public class MainController implements Initializable {
     }
 
     public void openResolution() throws IOException {
-        System.out.println(resolutionProperties[5]);
         if (resolutionProperties[5] == null) {
             Functions.openWindow("Main/Resolution/resolution.fxml", "Resolutions");
         } else {

@@ -12,10 +12,4 @@ public class C {
         System.load(changeAbsolute);
     }
 
-    public static void main(String[] args) {
-        if (args.length == 2) {
-            change(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-        }
-    }
-
 }

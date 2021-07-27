@@ -1,1 +1,1 @@
-javaw -Xmx200m -jar C:\Users\gmaun\Documents\JavaProjects\Projects\resolution-switcher\out\artifacts\resolution_switcher_jar\resolution-switcher.jar
+javaw -Xmx200m -jar C:\Users\gmaun\Documents\JavaProjects\Projects\resolution-switcher\resolution-switcher.jar 1920 1080

@@ -43,13 +43,11 @@ public class Functions {
     public static String createBatch(int width, int height) throws IOException {
         String name = "resolutions/" + width + "x" + height + ".bat";
         File file = new File("resolutions/" + width + "x" + height + ".bat");
-        File folder = new File("src/Main/C");
+        File folder = new File("resolution-switcher.jar");
 
         FileOutputStream output = new FileOutputStream(file);
         DataOutputStream input = new DataOutputStream(output);
-        input.writeBytes("cd " + folder.getAbsolutePath() + "\n");
-        input.writeBytes("javac C.java\n");
-        input.writeBytes("java C.java " + width + " " + height);
+        input.writeBytes("javaw -Xmx200m -jar " + folder.getAbsolutePath() + " " + width + " " + height);
         input.close();
         output.close();
 

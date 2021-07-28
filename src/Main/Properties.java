@@ -17,14 +17,8 @@ public class Properties {
         this.height = height;
         this.batch = batch;
         this.icon = icon;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public String getBatch() {
-        return batch;
+        System.out.println(icon);
+        System.out.println(batch);
     }
 
     public String getTitle() {
@@ -47,16 +41,12 @@ public class Properties {
         return height;
     }
 
-    public String getFile() {
-        return new File("resolutions\\" + width + "x" + height + ".exe").getAbsolutePath();
-    }
-
     public String getBatchFile() {
-        return new File("resolutions\\" + width + "x" + height + ".bat").getAbsolutePath();
+        return new File(batch).getAbsolutePath();
     }
 
     public String getIconFile() {
-        return new File("resolutions\\" + width + "x" + height + ".ico").getAbsolutePath();
+        return new File(icon).getAbsolutePath();
     }
 
 }

@@ -7,16 +7,12 @@ import com.google.gson.GsonBuilder;
 import com.jfoenix.controls.JFXCheckBox;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -83,11 +79,9 @@ public class SettingsController implements Initializable {
         File batch = new File("resolution-switcher.bat");
 
         if (selected) {
-            Path jar = Paths.get("out/artifacts/resolution_switcher_jar/resolution-switcher.jar");
-
             FileOutputStream output = new FileOutputStream(batch);
             DataOutputStream input = new DataOutputStream(output);
-            input.writeBytes("javaw -Xmx200m -jar " + jar.toAbsolutePath());
+            input.writeBytes("javaw -Xmx200m -jar resolution-switcher.jar");
             input.close();
             output.close();
 
@@ -98,9 +92,9 @@ public class SettingsController implements Initializable {
             link.setPath(filePath);
             link.save();
         } else {
-            File batchFile = new File(System.getProperty("user.home") +
+            File startupFile = new File(System.getProperty("user.home") +
                     "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/resolution-switcher.bat.lnk");
-            if (batchFile.delete()) {
+            if (startupFile.delete() && batch.delete()) {
                 System.out.println("deleted");
             }
         }

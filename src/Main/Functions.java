@@ -41,13 +41,13 @@ public class Functions {
     public static ImageView resImage5;
 
     public static String createBatch(int width, int height) throws IOException {
-        String name = "resolutions/" + width + "x" + height + ".bat";
-        File file = new File("resolutions/" + width + "x" + height + ".bat");
-        File folder = new File("resolution-switcher.jar");
+        String name = width + "x" + height + ".bat";
+        File file = new File(name);
+        File folder = new File(System.getProperty("user.dir"));
 
         FileOutputStream output = new FileOutputStream(file);
         DataOutputStream input = new DataOutputStream(output);
-        input.writeBytes("javaw -Xmx200m -jar " + folder.getAbsolutePath() + " " + width + " " + height);
+        input.writeBytes("javaw -Xmx200m -jar " + folder.getAbsolutePath() + "/resolution-switcher.jar " + width + " " + height);
         input.close();
         output.close();
 

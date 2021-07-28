@@ -4,6 +4,7 @@ import Main.C.C;
 import Main.Functions;
 import Main.Properties;
 import com.jfoenix.controls.JFXButton;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -24,45 +25,26 @@ import net.jimmc.jshortcut.JShellLink;
 
 public class MainController implements Initializable {
 
-    @FXML
-    private AnchorPane window;
-    @FXML
-    private ImageView logo;
-    @FXML
-    private ImageView settings;
-    @FXML
-    private ImageView help;
-    @FXML
-    private ImageView minimize;
-    @FXML
-    private ImageView close;
-
-    @FXML
-    private JFXButton resolution0;
-    @FXML
-    private JFXButton resolution1;
-    @FXML
-    private JFXButton resolution2;
-    @FXML
-    private JFXButton resolution3;
-    @FXML
-    private JFXButton resolution4;
-    @FXML
-    private JFXButton resolution5;
-    @FXML
-    private ImageView resImage0;
-    @FXML
-    private ImageView resImage1;
-    @FXML
-    private ImageView resImage2;
-    @FXML
-    private ImageView resImage3;
-    @FXML
-    private ImageView resImage4;
-    @FXML
-    private ImageView resImage5;
-    @FXML
-    private Label status;
+    @FXML private AnchorPane window;
+    @FXML private ImageView logo;
+    @FXML private ImageView settings;
+    @FXML private ImageView help;
+    @FXML private ImageView folder;
+    @FXML private ImageView minimize;
+    @FXML private ImageView close;
+    @FXML private JFXButton resolution0;
+    @FXML private JFXButton resolution1;
+    @FXML private JFXButton resolution2;
+    @FXML private JFXButton resolution3;
+    @FXML private JFXButton resolution4;
+    @FXML private JFXButton resolution5;
+    @FXML private ImageView resImage0;
+    @FXML private ImageView resImage1;
+    @FXML private ImageView resImage2;
+    @FXML private ImageView resImage3;
+    @FXML private ImageView resImage4;
+    @FXML private ImageView resImage5;
+    @FXML private Label status;
 
     private final Properties[] resolutionProperties = new Properties[6];
 
@@ -81,6 +63,7 @@ public class MainController implements Initializable {
         mouseClick(resolution5);
 
         logo.setImage(new Image(new File("images/logo.png").toURI().toString()));
+        folder.setImage(new Image(new File("images/folder.png").toURI().toString()));
         settings.setImage(new Image(new File("images/settings.png").toURI().toString()));
         help.setImage(new Image(new File("images/help.png").toURI().toString()));
         minimize.setImage(new Image(new File("images/minimize.png").toURI().toString()));
@@ -195,10 +178,19 @@ public class MainController implements Initializable {
         files.removeIf(File::delete);
         deleteDesktopShortcut(properties.getFileName());
         deleteStartMenuShortcut(properties.getFileName());
+        deleteRoot(properties.getFileName());
 
         if (files.size() == 0) {
             Platform.runLater(Functions::loadResolutions);
         }
+    }
+
+    private void deleteRoot(String fileName) {
+        File f = new File(System.getProperty("user.dir"));
+        File[] matchingFiles = f.listFiles((dir, name) -> name.startsWith(fileName));
+        assert matchingFiles != null;
+        ArrayList<File> files = new ArrayList<>(Arrays.asList(matchingFiles));
+        files.removeIf(File::delete);
     }
 
     private void deleteDesktopShortcut(String fileName) {
@@ -223,6 +215,10 @@ public class MainController implements Initializable {
         } else {
             status.setText("Status: Reached maximum resolutions!");
         }
+    }
+
+    public void openFolder() throws IOException {
+        Desktop.getDesktop().open(new File(System.getProperty("user.dir")));
     }
 
     public void openHelp() throws IOException {

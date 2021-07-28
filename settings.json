@@ -1,5 +1,5 @@
 {
   "startup": false,
   "desktop": true,
-  "startMenu": true
+  "startMenu": false
 }

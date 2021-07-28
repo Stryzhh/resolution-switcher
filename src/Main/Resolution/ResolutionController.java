@@ -17,9 +17,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javax.imageio.ImageIO;
 import net.jimmc.jshortcut.JShellLink;
-import net.sf.image4j.codec.ico.ICOEncoder;
 
 public class ResolutionController implements Initializable {
 
@@ -35,7 +33,6 @@ public class ResolutionController implements Initializable {
     private ImageView minimize;
     @FXML
     private ImageView close;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -61,8 +58,8 @@ public class ResolutionController implements Initializable {
             getImage = true;
         } else if (width.getSelectionModel().getSelectedItem() != null
                 && height.getSelectionModel().getSelectedItem() != null) {
-            widthValue =  Integer.parseInt(width.getSelectionModel().getSelectedItem());
-            heightValue =  Integer.parseInt(height.getSelectionModel().getSelectedItem());
+            widthValue = Integer.parseInt(width.getSelectionModel().getSelectedItem());
+            heightValue = Integer.parseInt(height.getSelectionModel().getSelectedItem());
             getImage = true;
         }
 
@@ -98,6 +95,11 @@ public class ResolutionController implements Initializable {
                 link.setPath(filePath);
                 link.save();
             }
+        }
+
+        Functions.loadResolutions();
+        if (Functions.resolutionProperties[5] != null) {
+            close();
         }
     }
 
@@ -165,7 +167,6 @@ public class ResolutionController implements Initializable {
     }
 
     public void close() {
-        Functions.loadResolutions();
         Functions.close(window);
     }
 

@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -25,20 +26,14 @@ import net.jimmc.jshortcut.JShellLink;
 
 public class SettingsController implements Initializable {
 
-    @FXML
-    private AnchorPane window;
-    @FXML
-    private ImageView logo;
-    @FXML
-    private ImageView minimize;
-    @FXML
-    private ImageView close;
-    @FXML
-    private JFXCheckBox startup;
-    @FXML
-    private JFXCheckBox desktopShortcut;
-    @FXML
-    private JFXCheckBox startShortcut;
+    @FXML private AnchorPane window;
+    @FXML private Label note;
+    @FXML private ImageView logo;
+    @FXML private ImageView minimize;
+    @FXML private ImageView close;
+    @FXML private JFXCheckBox startup;
+    @FXML private JFXCheckBox desktopShortcut;
+    @FXML private JFXCheckBox startShortcut;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -94,8 +89,8 @@ public class SettingsController implements Initializable {
         } else {
             File startupFile = new File(System.getProperty("user.home") +
                     "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/resolution-switcher.bat.lnk");
-            if (startupFile.delete() && batch.delete()) {
-                System.out.println("deleted");
+            if (!startupFile.delete() || !batch.delete()) {
+                note.setText("Couldn't delete files");
             }
         }
     }

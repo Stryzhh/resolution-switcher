@@ -8,48 +8,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            onMouseEntered="#drag" prefHeight="189.0" prefWidth="300.0"
-            style="-fx-background-color: #2D3447; -fx-border-color: black;" xmlns="http://javafx.com/javafx/16"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.SettingsUI.SettingsController">
-   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0"
-               prefWidth="300.0" style="-fx-background-color: #363434; -fx-border-color: black;">
-      <ImageView fx:id="logo" fitHeight="35.0" fitWidth="30.0" layoutX="2.0" layoutY="5.0" pickOnBounds="true"
-                 preserveRatio="true" x="5.0">
-         <Image url="@../../../images/logo.png"/>
+<AnchorPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#drag" prefHeight="189.0" prefWidth="300.0" style="-fx-background-color: #2D3447; -fx-border-color: black;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.SettingsUI.SettingsController">
+   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #363434; -fx-border-color: black;">
+      <ImageView fx:id="logo" fitHeight="35.0" fitWidth="30.0" layoutX="2.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" x="5.0">
+         <Image url="@../../../images/logo.png" />
       </ImageView>
-      <JFXButton layoutX="263.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                 minWidth="-Infinity" onAction="#close" prefHeight="20.0" prefWidth="30.0"
-                 style="-fx-graphic: url('@../../../images/email.png'); -fx-background-image: url('@../../../images/email.png');"
-                 text="Button">
+      <JFXButton layoutX="263.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#close" prefHeight="20.0" prefWidth="30.0" style="-fx-graphic: url('@../../../images/email.png'); -fx-background-image: url('@../../../images/email.png');" text="Button">
          <graphic>
             <ImageView fx:id="close" fitHeight="14.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../../../images/close.png"/>
+               <Image url="@../../../images/close.png" />
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton layoutX="230.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                 minWidth="-Infinity" onAction="#minimize" prefHeight="20.0" prefWidth="30.0"
-                 style="-fx-graphic: url('@../../../images/email.png'); -fx-background-image: url('@../../../images/email.png');">
+      <JFXButton layoutX="230.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#minimize" prefHeight="20.0" prefWidth="30.0" style="-fx-graphic: url('@../../../images/email.png'); -fx-background-image: url('@../../../images/email.png');">
          <graphic>
             <ImageView fx:id="minimize" fitHeight="14.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-               <Image url="@../../../images/minimize.png"/>
+               <Image url="@../../../images/minimize.png" />
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label layoutX="129.0" layoutY="12.0" text="Settings" textFill="WHITE"/>
+      <Label layoutX="129.0" layoutY="12.0" text="Settings" textFill="WHITE" />
    </AnchorPane>
    <Label layoutX="14.0" layoutY="50.0" prefHeight="27.0" prefWidth="76.0" text="Settings" textFill="WHITE">
       <font>
-         <Font name="System Bold" size="15.0"/>
+         <Font name="System Bold" size="15.0" />
       </font>
    </Label>
-   <JFXCheckBox fx:id="desktopShortcut" checkedColor="#6ac968" layoutX="28.0" layoutY="114.0" prefHeight="18.0"
-                prefWidth="170.0" text="Automatically create desktop shortcuts" textFill="WHITE"
-                unCheckedColor="#dadada"/>
-   <JFXCheckBox fx:id="startup" checkedColor="#6ac968" layoutX="28.0" layoutY="86.0" prefHeight="18.0" prefWidth="170.0"
-                text="Run on startup" textFill="WHITE" unCheckedColor="#dadada"/>
-   <JFXCheckBox fx:id="startShortcut" checkedColor="#6ac968" layoutX="28.0" layoutY="142.0" prefHeight="18.0"
-                prefWidth="170.0" text="Automatically create start menu shortcuts" textFill="WHITE"
-                unCheckedColor="#dadada"/>
+   <JFXCheckBox fx:id="desktopShortcut" checkedColor="#6ac968" layoutX="28.0" layoutY="114.0" prefHeight="18.0" prefWidth="170.0" text="Automatically create desktop shortcuts" textFill="WHITE" unCheckedColor="#dadada" />
+   <JFXCheckBox fx:id="startup" checkedColor="#6ac968" layoutX="28.0" layoutY="86.0" prefHeight="18.0" prefWidth="170.0" text="Run on startup" textFill="WHITE" unCheckedColor="#dadada" />
+   <JFXCheckBox fx:id="startShortcut" checkedColor="#6ac968" layoutX="28.0" layoutY="142.0" prefHeight="18.0" prefWidth="170.0" text="Automatically create start menu shortcuts" textFill="WHITE" unCheckedColor="#dadada" />
+   <Label fx:id="note" alignment="CENTER" layoutX="55.0" layoutY="167.0" prefHeight="17.0" prefWidth="191.0" textFill="#ff3535" />
 </AnchorPane>

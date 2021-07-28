@@ -47,7 +47,7 @@
       <JFXButton layoutX="495.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#openFolder" prefHeight="35.0" prefWidth="43.0" style="-fx-background-color: #545252; -fx-border-color: black;" text="Button" textFill="WHITE">
          <graphic>
             <ImageView fx:id="folder" fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" x="5.0">
-               <Image url="@../../../images/folder.png"/>
+               <Image url="@../../../images/folder.png" />
             </ImageView>
          </graphic>
       </JFXButton>

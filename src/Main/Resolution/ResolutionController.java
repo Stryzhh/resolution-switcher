@@ -21,18 +21,12 @@ import net.jimmc.jshortcut.JShellLink;
 
 public class ResolutionController implements Initializable {
 
-    @FXML
-    private AnchorPane window;
-    @FXML
-    private ListView<String> list;
-    @FXML
-    private ComboBox<String> width;
-    @FXML
-    private ComboBox<String> height;
-    @FXML
-    private ImageView minimize;
-    @FXML
-    private ImageView close;
+    @FXML private AnchorPane window;
+    @FXML private ListView<String> list;
+    @FXML private ComboBox<String> width;
+    @FXML private ComboBox<String> height;
+    @FXML private ImageView minimize;
+    @FXML private ImageView close;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

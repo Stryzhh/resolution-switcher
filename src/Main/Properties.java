@@ -17,8 +17,6 @@ public class Properties {
         this.height = height;
         this.batch = batch;
         this.icon = icon;
-        System.out.println(icon);
-        System.out.println(batch);
     }
 
     public String getTitle() {

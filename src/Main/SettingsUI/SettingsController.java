@@ -77,7 +77,7 @@ public class SettingsController implements Initializable {
         if (selected) {
             FileOutputStream output = new FileOutputStream(batch);
             DataOutputStream input = new DataOutputStream(output);
-            input.writeBytes("javaw -Xmx200m -jar resolution-switcher.jar");
+            input.writeBytes("resolution-switcher.exe");
             input.close();
             output.close();
 

@@ -245,8 +245,8 @@
     </configuration>
     <list>
       <item itemvalue="Application.C" />
-      <item itemvalue="Application.StartProgram" />
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.StartProgram" />
     </list>
     <recent_temporary>
       <list>

@@ -43,11 +43,10 @@ public class Functions {
     public static String createBatch(int width, int height) throws IOException {
         String name = width + "x" + height + ".bat";
         File file = new File(name);
-        File folder = new File(System.getProperty("user.dir"));
 
         FileOutputStream output = new FileOutputStream(file);
         DataOutputStream input = new DataOutputStream(output);
-        input.writeBytes("javaw -Xmx200m -jar " + folder.getAbsolutePath() + "/resolution-switcher.jar " + width + " " + height);
+        input.writeBytes("resolution-switcher.exe " + width + " " + height);
         input.close();
         output.close();
 
@@ -176,17 +175,20 @@ public class Functions {
         }));
     }
 
-    public static void openWindow(String fxml, String title) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Functions.class.getClassLoader().
-                getResource(fxml));
-        Parent window = fxmlLoader.load();
-        Stage newWindow = new Stage();
+    public static void openWindow(String fxml, String title, boolean alreadyOpen) throws IOException {
+        if (!alreadyOpen) {
+            FXMLLoader fxmlLoader = new FXMLLoader(Functions.class.getClassLoader().
+                    getResource(fxml));
+            Parent window = fxmlLoader.load();
+            Stage newWindow = new Stage();
 
-        newWindow.setAlwaysOnTop(true);
-        newWindow.initStyle(StageStyle.UNDECORATED);
-        newWindow.setTitle(title);
-        newWindow.setScene(new Scene(window));
-        newWindow.show();
+            newWindow.setAlwaysOnTop(true);
+            newWindow.initStyle(StageStyle.UNDECORATED);
+            newWindow.setTitle(title);
+            newWindow.setScene(new Scene(window));
+            newWindow.getIcons().add(new javafx.scene.image.Image("logo.png"));
+            newWindow.show();
+        }
     }
 
     public static void minimize(AnchorPane window) {

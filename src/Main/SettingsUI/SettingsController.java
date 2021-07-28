@@ -2,6 +2,7 @@ package Main.SettingsUI;
 
 import Main.Functions;
 import Main.Settings;
+import Main.Window;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jfoenix.controls.JFXCheckBox;
@@ -124,6 +125,7 @@ public class SettingsController implements Initializable {
     public void close() {
         Stage thisWindow = (Stage) window.getScene().getWindow();
         thisWindow.close();
+        Window.setSettings(false);
     }
 
 }

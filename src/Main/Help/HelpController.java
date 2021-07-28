@@ -1,6 +1,7 @@
 package Main.Help;
 
 import Main.Functions;
+import Main.Window;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -54,6 +55,7 @@ public class HelpController implements Initializable {
     public void close() {
         Stage thisWindow = (Stage) window.getScene().getWindow();
         thisWindow.close();
+        Window.setHelp(false);
     }
 
 }

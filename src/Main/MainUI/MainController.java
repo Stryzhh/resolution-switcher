@@ -3,6 +3,7 @@ package Main.MainUI;
 import Main.C.C;
 import Main.Functions;
 import Main.Properties;
+import Main.Window;
 import com.jfoenix.controls.JFXButton;
 import java.awt.*;
 import java.io.File;
@@ -96,17 +97,17 @@ public class MainController implements Initializable {
 
                 MenuItem change = new MenuItem("Change Resolution");
                 MenuItem desktopShortcut = new MenuItem("Create Desktop Shortcut");
-                MenuItem startupShortcut = new MenuItem("Create Startup Shortcut");
+                MenuItem startMenuShortcut = new MenuItem("Create StartMenu Shortcut");
                 MenuItem delete = new MenuItem("Delete Resolution");
 
-                contextMenu.getItems().addAll(change, desktopShortcut, startupShortcut, delete);
+                contextMenu.getItems().addAll(change, desktopShortcut, startMenuShortcut, delete);
                 button.setContextMenu(contextMenu);
                 contextMenu.show(pane, mouseEvent.getScreenX(), mouseEvent.getScreenY());
 
                 change.setOnAction(actionEvent -> changeResolution(button));
                 desktopShortcut.setOnAction(actionEvent -> createDesktopShortcut(button));
                 delete.setOnAction(actionEvent -> deleteResolution(button));
-                startupShortcut.setOnAction(actionEvent -> createStartupShortcut(button));
+                startMenuShortcut.setOnAction(actionEvent -> createStartMenuShortcut(button));
             }
         });
     }
@@ -150,21 +151,26 @@ public class MainController implements Initializable {
 
         JShellLink link = new JShellLink();
         String filePath = JShellLink.getDirectory("") + properties.getBatchFile();
+        String iconPath = JShellLink.getDirectory("") + properties.getIconFile();
+
         link.setFolder(JShellLink.getDirectory("desktop"));
         link.setName(properties.getFileName());
         link.setPath(filePath);
+        link.setIconLocation(iconPath);
         link.save();
     }
 
-    private void createStartupShortcut(JFXButton button) {
+    private void createStartMenuShortcut(JFXButton button) {
         Properties properties = getResolution(button);
         File file = new File(System.getProperty("user.home") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/");
+        String iconPath = JShellLink.getDirectory("") + properties.getIconFile();
 
         JShellLink link = new JShellLink();
         String filePath = JShellLink.getDirectory("") + properties.getBatchFile();
         link.setFolder(file.getAbsolutePath());
         link.setName(properties.getFileName());
         link.setPath(filePath);
+        link.setIconLocation(iconPath);
         link.save();
     }
 
@@ -211,7 +217,8 @@ public class MainController implements Initializable {
 
     public void openResolution() throws IOException {
         if (resolutionProperties[5] == null) {
-            Functions.openWindow("Main/Resolution/resolution.fxml", "Resolutions");
+            Functions.openWindow("Main/Resolution/resolution.fxml", "Resolutions", Window.isAdd());
+            Window.setAdd(true);
         } else {
             status.setText("Status: Reached maximum resolutions!");
         }
@@ -221,12 +228,14 @@ public class MainController implements Initializable {
         Desktop.getDesktop().open(new File(System.getProperty("user.dir")));
     }
 
-    public void openHelp() throws IOException {
-        Functions.openWindow("Main/Help/help.fxml", "Help");
+    public void openSettings() throws IOException {
+        Functions.openWindow("Main/SettingsUI/settings.fxml", "Settings", Window.isSettings());
+        Window.setSettings(true);
     }
 
-    public void openSettings() throws IOException {
-        Functions.openWindow("Main/SettingsUI/settings.fxml", "Settings");
+    public void openHelp() throws IOException {
+        Functions.openWindow("Main/Help/help.fxml", "Help", Window.isHelp());
+        Window.setHelp(true);
     }
 
     public void drag() {

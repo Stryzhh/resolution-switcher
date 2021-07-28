@@ -3,6 +3,7 @@ package Main.Resolution;
 import Main.Functions;
 import Main.Properties;
 import Main.Settings;
+import Main.Window;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.File;
@@ -25,6 +26,7 @@ public class ResolutionController implements Initializable {
     @FXML private ListView<String> list;
     @FXML private ComboBox<String> width;
     @FXML private ComboBox<String> height;
+    @FXML private ImageView logo;
     @FXML private ImageView minimize;
     @FXML private ImageView close;
 
@@ -34,8 +36,9 @@ public class ResolutionController implements Initializable {
         loadWidth();
         loadHeight();
 
-        minimize.setImage(new Image(new File("images/grey-minimize.png").toURI().toString()));
-        close.setImage(new Image(new File("images/grey-close.png").toURI().toString()));
+        logo.setImage(new Image(new File("images/logo.png").toURI().toString()));
+        minimize.setImage(new Image(new File("images/minimize.png").toURI().toString()));
+        close.setImage(new Image(new File("images/close.png").toURI().toString()));
     }
 
     public void addResolution() throws IOException {
@@ -81,12 +84,14 @@ public class ResolutionController implements Initializable {
             }
             if (Settings.currentStartMenu) {
                 File file = new File(System.getProperty("user.home") + "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/");
+                String iconPath = JShellLink.getDirectory("") + properties.getIconFile();
 
                 JShellLink link = new JShellLink();
                 String filePath = JShellLink.getDirectory("") + properties.getBatchFile();
                 link.setFolder(file.getAbsolutePath());
                 link.setName(properties.getFileName());
                 link.setPath(filePath);
+                link.setIconLocation(iconPath);
                 link.save();
             }
         }
@@ -162,6 +167,7 @@ public class ResolutionController implements Initializable {
 
     public void close() {
         Functions.close(window);
+        Window.setAdd(false);
     }
 
 }
